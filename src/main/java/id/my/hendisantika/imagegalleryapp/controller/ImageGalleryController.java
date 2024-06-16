@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,5 +26,10 @@ public class ImageGalleryController {
     private String uploadFolder;
 
     private ImageGalleryService imageGalleryService;
+
+    @GetMapping(value = {"/", "/home"})
+    public String addProductPage() {
+        return "index";
+    }
 
 }
