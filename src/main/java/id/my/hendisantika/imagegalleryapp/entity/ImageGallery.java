@@ -13,7 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by IntelliJ IDEA.
@@ -44,7 +45,7 @@ public class ImageGallery {
     private String description;
 
     @Column(name = "price", nullable = false, precision = 10, scale = 2)
-    private double price;
+    private BigDecimal price;
 
     @Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
