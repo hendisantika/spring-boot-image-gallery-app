@@ -2,7 +2,9 @@ package id.my.hendisantika.imagegalleryapp.controller;
 
 import id.my.hendisantika.imagegalleryapp.entity.ImageGallery;
 import id.my.hendisantika.imagegalleryapp.service.ImageGalleryService;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,9 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -102,4 +107,14 @@ public class ImageGalleryController {
         }
     }
 
+    @GetMapping("/image/display/{id}")
+    @ResponseBody
+    void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<ImageGallery> imageGallery)
+            throws ServletException, IOException {
+        log.info("Id :: {}", id);
+        imageGallery = imageGalleryService.getImageById(id);
+        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        response.getOutputStream().write(imageGallery.get().getImage());
+        response.getOutputStream().close();
+    }
 }
