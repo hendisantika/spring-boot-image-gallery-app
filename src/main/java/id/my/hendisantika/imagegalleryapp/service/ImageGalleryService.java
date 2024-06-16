@@ -5,6 +5,8 @@ import id.my.hendisantika.imagegalleryapp.repository.ImageGalleryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-image-gallery-app
@@ -23,5 +25,9 @@ public class ImageGalleryService {
 
     public void saveImage(ImageGallery imageGallery) {
         imageGalleryRepository.save(imageGallery);
+    }
+
+    public List<ImageGallery> getAllActiveImages() {
+        return imageGalleryRepository.findAll();
     }
 }
