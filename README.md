@@ -8,3 +8,6 @@
 4. Change your MySQL credentials in application.properties file
 5. Run the application: `mvn clean spring-boot:run`
 6. Open your favorite browser: http://localhost:8080
+
+### Image Screenshot
+
