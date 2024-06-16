@@ -47,7 +47,7 @@ public class ImageGalleryController {
     @Value("${uploadDir}")
     private String uploadFolder;
 
-    private ImageGalleryService imageGalleryService;
+    private final ImageGalleryService imageGalleryService;
 
     @GetMapping(value = {"/", "/home"})
     public String addProductPage() {
