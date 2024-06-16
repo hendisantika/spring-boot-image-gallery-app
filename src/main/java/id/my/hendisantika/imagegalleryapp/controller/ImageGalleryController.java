@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -140,5 +141,12 @@ public class ImageGalleryController {
             e.printStackTrace();
             return "redirect:/home";
         }
+    }
+
+    @GetMapping("/image/show")
+    public String show(Model map) {
+        List<ImageGallery> images = imageGalleryService.getAllActiveImages();
+        map.addAttribute("images", images);
+        return "images";
     }
 }
