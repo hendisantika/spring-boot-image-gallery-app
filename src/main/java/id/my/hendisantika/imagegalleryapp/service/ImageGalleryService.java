@@ -1,5 +1,6 @@
 package id.my.hendisantika.imagegalleryapp.service;
 
+import id.my.hendisantika.imagegalleryapp.entity.ImageGallery;
 import id.my.hendisantika.imagegalleryapp.repository.ImageGalleryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,4 +20,8 @@ import org.springframework.stereotype.Service;
 public class ImageGalleryService {
 
     private final ImageGalleryRepository imageGalleryRepository;
+
+    public void saveImage(ImageGallery imageGallery) {
+        imageGalleryRepository.save(imageGallery);
+    }
 }
