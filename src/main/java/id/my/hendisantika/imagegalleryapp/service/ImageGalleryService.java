@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -29,5 +30,9 @@ public class ImageGalleryService {
 
     public List<ImageGallery> getAllActiveImages() {
         return imageGalleryRepository.findAll();
+    }
+
+    public Optional<ImageGallery> getImageById(Long id) {
+        return imageGalleryRepository.findById(id);
     }
 }
