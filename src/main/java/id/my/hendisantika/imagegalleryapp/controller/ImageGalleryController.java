@@ -109,12 +109,36 @@ public class ImageGalleryController {
 
     @GetMapping("/image/display/{id}")
     @ResponseBody
-    void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<ImageGallery> imageGallery)
+    public void showImage(@PathVariable("id") Long id, HttpServletResponse response, Optional<ImageGallery> imageGallery)
             throws ServletException, IOException {
         log.info("Id :: {}", id);
         imageGallery = imageGalleryService.getImageById(id);
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
         response.getOutputStream().write(imageGallery.get().getImage());
         response.getOutputStream().close();
+    }
+
+    @GetMapping("/image/imageDetails")
+    public String showProductDetails(@RequestParam("id") Long id, Optional<ImageGallery> imageGallery, Model model) {
+        try {
+            log.info("Id :: {}", id);
+            if (id != 0) {
+                imageGallery = imageGalleryService.getImageById(id);
+
+                log.info("products :: {}", imageGallery);
+                if (imageGallery.isPresent()) {
+                    model.addAttribute("id", imageGallery.get().getId());
+                    model.addAttribute("description", imageGallery.get().getDescription());
+                    model.addAttribute("name", imageGallery.get().getName());
+                    model.addAttribute("price", imageGallery.get().getPrice());
+                    return "imagedetails";
+                }
+                return "redirect:/home";
+            }
+            return "redirect:/home";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/home";
+        }
     }
 }
