@@ -11,3 +11,10 @@
 
 ### Image Screenshot
 
+Home Page
+
+![Home Page](img/home.png "Home Page")
+
+Details Image
+
+![Details Image](img/details.png "Details Image")
